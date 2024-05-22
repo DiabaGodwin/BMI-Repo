@@ -1,9 +1,12 @@
 'use client';
 import '../../../app/globals.css';
 import React from 'react';
-import Chart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
 
-const SavingsChart = () => {
+// Dynamically import the Chart component with SSR disabled
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+const SavingsChart = () =>{
   const [options, setOptions] = React.useState({
     chart: {
       id: 'basic-bar'

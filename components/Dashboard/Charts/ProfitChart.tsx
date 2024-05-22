@@ -6,7 +6,7 @@ import { ApexOptions } from 'apexcharts';
 // Dynamically import the ReactApexChart component with SSR disabled
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-const ProfitChart: React.FC = () => {
+const ProfitChart =()=>{
   const [options, setOptions] = React.useState<ApexOptions>({
     chart: {
       height: 350,

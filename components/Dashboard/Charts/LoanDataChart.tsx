@@ -2,9 +2,12 @@
 import { ApexOptions } from 'apexcharts';
 import '../../../app/globals.css';
 import React from 'react';
-import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
 
-const LoanDataChart= () => {
+// Dynamically import the ReactApexChart component with SSR disabled
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+const LoanDataChart = () => {
   const [options, setOptions] = React.useState<ApexOptions>({
     chart: {
       height: 350,
@@ -27,7 +30,7 @@ const LoanDataChart= () => {
   const [series, setSeries] = React.useState([
     {
       name: 'Series 1',
-      data: [80, 50, 30, 40, 60, 20,60, 50, 30, 40, 60, 20],
+      data: [80, 50, 30, 40, 100, 20, 80, 50, 30, 40, 100, 20],
     },
   ]);
 
