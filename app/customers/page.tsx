@@ -1,9 +1,9 @@
-import AddCustomerForm from '@/components/Customers/AddCustomerForm'
 import React from 'react'
 import "../globals.css"
 import { UserDataGrid } from '@/components/Dashboard/UserData/UserDataGrid'
 import { CustomerDetails } from '@/components/Customers/CustomerDetails/CustomerDetails'
 import {customers, columns} from '../../components/Customers/CustomerDetails/data'
+import { AddCustomerForm } from '@/components/Customers/AddCustomerForm'
 
 
 const CustomersPage = () => {

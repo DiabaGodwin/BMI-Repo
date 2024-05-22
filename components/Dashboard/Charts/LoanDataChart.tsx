@@ -27,7 +27,7 @@ const LoanDataChart= () => {
   const [series, setSeries] = React.useState([
     {
       name: 'Series 1',
-      data: [80, 50, 30, 40, 100, 20,80, 50, 30, 40, 100, 20],
+      data: [80, 50, 30, 40, 60, 20,60, 50, 30, 40, 60, 20],
     },
   ]);
 

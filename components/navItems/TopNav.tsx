@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Image from 'next/image';
 
 const TopNav = () => {
   return (
@@ -35,7 +36,7 @@ const TopNav = () => {
           </div>
           <div className="relative">
             <button className="relative flex items-center justify-center w-10 h-10 text-gray-600 bg-white rounded-full shadow hover:bg-gray-100">
-              <img className="w-10 h-10 rounded-full" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Profile" />
+              <Image width={500} className="w-10 h-10 rounded-full" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Profile" />
             </button>          
 
             {/* <button className="relative flex items-center justify-center w-10 h-10 text-gray-600 bg-white rounded-full shadow hover:bg-gray-100">

@@ -1,13 +1,16 @@
 'use client';
 import React from 'react';
-import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
 import { ApexOptions } from 'apexcharts';
+
+// Dynamically import the ReactApexChart component with SSR disabled
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const ProfitChart: React.FC = () => {
   const [options, setOptions] = React.useState<ApexOptions>({
     chart: {
       height: 350,
-      type: 'line', // explicitly specifying type
+      type: 'line',
       zoom: {
         enabled: false
       }
@@ -35,7 +38,7 @@ const ProfitChart: React.FC = () => {
 
   const [series, setSeries] = React.useState([
     {
-      name: "Witdrawal",
+      name: "Withdrawal",
       data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
     }
   ]);

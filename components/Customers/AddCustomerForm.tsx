@@ -28,7 +28,7 @@ const normFile = (e: any) => {
   return e?.fileList;
 };
 
-const FormDisabledDemo: React.FC = () => {
+export const AddCustomerForm= () => {
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
 
   return (
@@ -115,4 +115,3 @@ const FormDisabledDemo: React.FC = () => {
   );
 };
 
-export default () => <FormDisabledDemo />;
