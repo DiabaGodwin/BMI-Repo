@@ -13,7 +13,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"  
 
 export const columns: ColumnDef<CustomerDetails>[] = [
     {
@@ -44,9 +44,10 @@ export const columns: ColumnDef<CustomerDetails>[] = [
     {accessorKey:"age", header:"Age"},
     {accessorKey:"dbo", header:"DOB"},
     {accessorKey:"picture", header:"Picture"},
-    {accessorKey:"phone", header:"Phone"},
+    {accessorKey:"phone", header:"Phone", minSize: 520}, 
     {accessorKey:"address", header:"Address"},
     {accessorKey:"governmentId", header:"GovernmentId"},
+    {accessorKey:"accountNumber", header:"AccountNumber"},
     {accessorKey:"ssn", header:"SSN"},
     {accessorKey:"nextOfKinName", header:"NxtOfKinName"},
     {accessorKey:"nextOfKinPhone", header:"NxtOfKinPhone"},
@@ -103,7 +104,7 @@ export const columns: ColumnDef<CustomerDetails>[] = [
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" style={{ backgroundColor:'white'}}>
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuItem
                   onClick={() => navigator.clipboard.writeText(payment.id)}
@@ -133,6 +134,7 @@ export type CustomerDetails = {
   email: string,
   address: string,
   governmentId: string,
+  accountNumber: string,
   ssn: string,
   nextOfKinName: string,
   nextOfKinPhone: string,
@@ -155,6 +157,7 @@ export type CustomerDetails = {
     "email": "john@example.com",
     "address": "123 Main St, Anytown, USA",
     "governmentId": "A1234567",
+    "accountNumber": "1234567890",
     "ssn": "123-45-6789",
     "nextOfKinName": "Jane Doe",
     "nextOfKinPhone": "123-456-7891",
@@ -174,6 +177,7 @@ export type CustomerDetails = {
     "email": "jane@example.com",
     "address": "456 Another St, Anytown, USA",
     "governmentId": "B2345678",
+    "accountNumber": "1234567890",
     "ssn": "234-56-7890",
     "nextOfKinName": "John Smith",
     "nextOfKinPhone": "123-456-7893",
@@ -194,6 +198,7 @@ export type CustomerDetails = {
     "email": "jane@example.com",
     "address": "456 Another St, Anytown, USA",
     "governmentId": "B2345678",
+    "accountNumber": "1234567890",
     "ssn": "234-56-7890",
     "nextOfKinName": "John Smith",
     "nextOfKinPhone": "123-456-7893",
@@ -214,6 +219,7 @@ export type CustomerDetails = {
     "email": "jane@example.com",
     "address": "456 Another St, Anytown, USA",
     "governmentId": "B2345678",
+    "accountNumber": "1234567890",
     "ssn": "234-56-7890",
     "nextOfKinName": "John Smith",
     "nextOfKinPhone": "123-456-7893",
@@ -234,6 +240,7 @@ export type CustomerDetails = {
     "email": "jane@example.com",
     "address": "456 Another St, Anytown, USA",
     "governmentId": "B2345678",
+    "accountNumber": "1234567890",
     "ssn": "234-56-7890",
     "nextOfKinName": "John Smith",
     "nextOfKinPhone": "123-456-7893",
@@ -254,6 +261,7 @@ export type CustomerDetails = {
     "email": "jane@example.com",
     "address": "456 Another St, Anytown, USA",
     "governmentId": "B2345678",
+    "accountNumber": "1234567890",
     "ssn": "234-56-7890",
     "nextOfKinName": "John Smith",
     "nextOfKinPhone": "123-456-7893",

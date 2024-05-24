@@ -45,7 +45,7 @@ export const AddCustomerForm= () => {
         wrapperCol={{ span: 14 }}
         layout="horizontal"
         disabled={componentDisabled}
-        style={{ maxWidth: 600 }}
+        style={{ maxWidth: 800 }}
       >
         {/* <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
           <Checkbox>Checkbox</Checkbox>

@@ -9,7 +9,7 @@ import { AddCustomerForm } from '@/components/Customers/AddCustomerForm'
 const CustomersPage = () => {
   return (
     <>
-    <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1">
+    <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1 gap-2">
       <div className="text-xl">
         <h1>Create New Account</h1>
         <AddCustomerForm/>

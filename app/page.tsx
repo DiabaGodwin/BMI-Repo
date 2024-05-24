@@ -3,6 +3,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout as AntLayout, Menu, theme } from "antd";
 import SideNavBar from "@/components/navItems/SideNavBar";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const { Header, Sider, Content } = AntLayout;
@@ -11,48 +12,18 @@ export default function Home() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <div>
-      <AntLayout>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-          <SideNavBar />
-        </Sider>
-        <AntLayout>
-          <Header style={{ padding: 0, background: colorBgContainer }}>
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-              }}
-            />
-          </Header>
-          <Content
-            className="bg-green-400"
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              width: "100%",
-              height: "100vh",
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <div className="bg-blue-400">
-              <h1>Dashboard</h1>
-              <ul>
-                <li>welcome</li>
-                <li>about</li>
-                <li>contact</li>
-                <li>login</li>
-                <li>footer</li>
-              </ul>
-            </div>
-          </Content>
-        </AntLayout>
-      </AntLayout>
-    </div>
+    <>
+
+      <div className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <h1 className="text-2xl font-sans font-bold text-blue-700">Welcome to signup page</h1>
+      <Link href="/dashboard" >
+        Click to Proced to Dashboard
+      </Link>
+          {/* <div className="bg-slate-500 w-1/3 h-1/2">
+
+          </div> */}
+      </div>
+      
+    </>
   );
 }

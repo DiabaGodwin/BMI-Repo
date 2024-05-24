@@ -48,7 +48,7 @@ const DashBoardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
           margin: "24px 16px",
           padding: 24,
           width: "100%",
-          minHeight: "700px",
+          minHeight: "70000px",
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
         }}

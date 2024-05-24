@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import LoanDataChart from "@/components/Dashboard/Charts/LoanDataChart";
 import ProfitChart from "@/components/Dashboard/Charts/ProfitChart";
+import { Suspense } from "react";
 
 const page =async () => {
   return (
@@ -32,24 +33,34 @@ const page =async () => {
       <div className="grid grid-cols-2 gap-4 mt-3">
         <div>
             <h1 className="text-lg font-bold">User Data</h1>
-            <UserDataGrid/>
+            <Suspense>            
+              <UserDataGrid/>
+            </Suspense>
         </div>
         <div className="">
         <h1 className="text-lg font-bold">Monthly Savings </h1>
             {/* <LoanData/> */}
+          <Suspense>            
             <SavingsChart/>
+          </Suspense>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mt-3 h-60">
+      <div className="grid grid-cols-3 gap-4 mt-3 h-50">
         <div className="col-span-1 border-2 rounded-md">
+        <Suspense>            
           <LoanDataChart/>
+        </Suspense>
         </div>
         <div className="col-span-1 border-2 rounded-md">
-          <ProfitChart/>
+          <Suspense>            
+            <ProfitChart/>
+          </Suspense>
         </div>
         <div className="col-span-1 border-2 rounded-md">
-        <ProfitChart/>
+        <Suspense>            
+          <ProfitChart/>       
+        </Suspense>
         </div>
       </div>
       

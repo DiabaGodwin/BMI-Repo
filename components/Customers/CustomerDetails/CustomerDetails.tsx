@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import { useState } from 'react'
 //import '@app/globals.css'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -33,6 +34,7 @@ import {
   } from "@/components/ui/table"
 
   interface DataTableProps<TData, TValue> {
+    // columns: Column<TData, TValue>[]
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
   }
@@ -42,13 +44,16 @@ export function CustomerDetails <TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
 
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+  // if (!columns.getCanSort()) {
+  //   return <div className={cn(className)}>{title}</div>
+  // }
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     []
   )
   const [columnVisibility, setColumnVisibility] =
-  React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
+  useState<VisibilityState>({})
+  const [rowSelection, setRowSelection] = useState({})
 
 
   const table = useReactTable({
@@ -76,20 +81,20 @@ export function CustomerDetails <TData, TValue>({
         <div className="">  
         <div className="flex items-center py-4">
             <Input
-              placeholder="Filter method..."
-              value={(table.getColumn("method")?.getFilterValue() as string) ?? ""}
+              placeholder="Filter account number..."
+              value={(table.getColumn("accountNumber")?.getFilterValue() as string) ?? ""}
               onChange={(event) =>
-                table.getColumn("method")?.setFilterValue(event.target.value)
+                table.getColumn("accountNumber")?.setFilterValue(event.target.value)
               }
               className="max-w-sm"
             />
             <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger asChild style={{ backgroundColor:'white'}}>
             <Button variant="outline" className="ml-auto">
               Columns
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" style={{ backgroundColor:'white'}}>
             {table
               .getAllColumns()
               .filter(
@@ -119,12 +124,12 @@ export function CustomerDetails <TData, TValue>({
                         <TableRow key={headerGroup.id}>
                           {headerGroup.headers.map((header) => {
                             return (
-                              <TableHead key={header.id}>
+                              <TableHead key={header.id}  className='bg-slate-200'>
                                 {header.isPlaceholder
                                   ? null
                                   : flexRender(
                                       header.column.columnDef.header,
-                                      header.getContext()
+                                      header.getContext(),
                                     )}
                               </TableHead>
                             )
@@ -138,10 +143,12 @@ export function CustomerDetails <TData, TValue>({
                           <TableRow
                             key={row.id}
                             data-state={row.getIsSelected() && "selected"}
+                            
                           >
                             {row.getVisibleCells().map((cell) => (
-                              <TableCell key={cell.id}>
+                              <TableCell key={cell.id} style={{height:'15px'}}>
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                
                               </TableCell>
                             ))}
                           </TableRow>

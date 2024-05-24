@@ -8,7 +8,6 @@ import {
   } from '@ant-design/icons';
   import { Button, Layout as AntLayout, Menu, theme } from 'antd';
 import { Link } from '@nextui-org/react';
-import { Key } from 'lucide-react';
 const SideNavBar = () => {
 
   return (
@@ -29,16 +28,16 @@ const SideNavBar = () => {
           <Menu.Item key="3" icon={<DashboardOutlined />}>
             <Link href="/dashboard">Dashboard</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<MoneyCollectOutlined />}>
+          <Menu.Item key="4" icon={<MoneyCollectOutlined />}>
             <Link href="/loans">Loans</Link>
           </Menu.Item>
           <Menu.Item key="5" icon={<MoneyCollectOutlined />}>
             <Link href="/withdrawals">Withdrawals</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<MoneyCollectOutlined />}>
+          <Menu.Item key="6" icon={<MoneyCollectOutlined />}>
             <Link href="/deposites">Deposites</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<LogoutOutlined />}>
+          <Menu.Item key="7" icon={<LogoutOutlined />}>
             <Link href="">Logout</Link>
           </Menu.Item>
         </Menu>
