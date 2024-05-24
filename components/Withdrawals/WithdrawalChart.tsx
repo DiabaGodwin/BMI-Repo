@@ -10,7 +10,7 @@ const WithdrawalChart =()=>{
   const [options, setOptions] = React.useState<ApexOptions>({
     chart: {
       height: 350,
-      width: '100%',
+      width: 1000,
       type: 'line',
       zoom: {
         enabled: false
@@ -47,7 +47,7 @@ const WithdrawalChart =()=>{
   return (
     <div>
       <div id="chart">
-        <ReactApexChart options={options} series={series} type="line" height={350} />
+        <ReactApexChart options={options} series={series} type="line" height={350}  style={{border:'2px soild'}}/>
       </div>
       <div id="html-dist"></div>
     </div>
