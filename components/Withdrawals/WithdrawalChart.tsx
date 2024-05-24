@@ -47,7 +47,7 @@ const WithdrawalChart =()=>{
   return (
     <div>
       <div id="chart">
-        <ReactApexChart options={options} series={series} type="line" height={350}  style={{border:'2px soild'}}/>
+        <ReactApexChart options={options} series={series} type="line" height={350} width={1200} style={{border:'2px soild'}}/>
       </div>
       <div id="html-dist"></div>
     </div>
