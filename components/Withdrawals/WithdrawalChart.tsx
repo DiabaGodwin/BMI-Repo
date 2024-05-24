@@ -10,6 +10,7 @@ const WithdrawalChart =()=>{
   const [options, setOptions] = React.useState<ApexOptions>({
     chart: {
       height: 350,
+      width: '100%',
       type: 'line',
       zoom: {
         enabled: false
@@ -22,7 +23,7 @@ const WithdrawalChart =()=>{
       curve: 'straight'
     },
     title: {
-      text: 'Product Trends by Month',
+      text: 'Withdrawal Trends by Month',
       align: 'left'
     },
     grid: {
