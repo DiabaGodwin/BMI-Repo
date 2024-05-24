@@ -40,14 +40,14 @@ const WithdrawalChart =()=>{
   const [series, setSeries] = React.useState([
     {
       name: "Withdrawal",
-      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+      data: [110, 141, 1035, 451, 549, 762, 169, 691, 1248]
     }
   ]);
 
   return (
     <div>
       <div id="chart">
-        <ReactApexChart options={options} series={series} type="line" height={350} width={1200} style={{border:'2px soild'}}/>
+        <ReactApexChart options={options} series={series} type="line" height={350} width={'100%'} style={{border:'2px soild'}}/>
       </div>
       <div id="html-dist"></div>
     </div>

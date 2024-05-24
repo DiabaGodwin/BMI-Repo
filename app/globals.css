@@ -67,10 +67,9 @@
   }
 
   #chart {
-    max-width: 650px;
-    margin: 35px auto;
+    min-width: 650px;
+    margin: 10px auto;
   }
-  
   @layer base {
     /* * {
       @apply border-border;
