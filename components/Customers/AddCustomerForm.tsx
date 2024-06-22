@@ -46,6 +46,7 @@ const normFile = (e: any) => {
   return e && e.fileList;
 };
 
+
 export const AddCustomerForm = () => {
   const [form] = Form.useForm();
   const [imageUrl, setimageUrl] = useState<UploadFile<any>>();
@@ -63,9 +64,10 @@ export const AddCustomerForm = () => {
      //formData.append()
       console.log("@#", data);
       await axios.post("api/account", data, {
-        headers:{
-         "Content-Type":"application/json"
-        }
+        headers: {
+          "Content-Type": "application/json",
+        },
+
       });
     } catch (error) {
       console.log(error)
