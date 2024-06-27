@@ -14,7 +14,7 @@ import {
 } from "antd";
 import { UploadChangeParam } from "antd/es/upload";
 
-type User = {
+type Customer ={
   id: string;
   email: string;
   middlename?: string | null;
@@ -22,11 +22,11 @@ type User = {
   lastname: string;
   phone: string;
   address: string;
-  userIdType: string;
-  userIdDocuments: Buffer;
-  userIdNumber: string;
+  accountNumber: string;
+  customerIdType: string;
+  customerIdDocuments?: string | null;
+  customerIdNumber: string;
   dateOfBirth?: Date | null;
-  identificationCard: string;
   nextOfKinFirstName?: string | null;
   nextOfKinLastName?: string | null;
   nextOfKinPhone?: string | null;
@@ -34,7 +34,9 @@ type User = {
   nextOfKinIdType?: string | null;
   nextOfKinIdNumber: string;
   accountBalance: string;
-};
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -54,20 +56,20 @@ export const AddCustomerForm = () => {
   const onImageChange =(e:UploadChangeParam<UploadFile<any>>)=>{
     setimageUrl(e.file)
   } 
-  async function CreateNewAccount(data: User) {
+
+  async function CreateNewAccount(data: Customer) {
     try {
       //const formData = new FormData();
       //const formValues = Object.fromEntries(formData.entries());
-      //Object.keys(data).forEach((key)=>formData.append(key,data[key as keyof User]as string))
-      //formData.append("userIdDocuments",imageUrl as unknown as  Blob)
-      
+      //Object.keys(data).forEach((key)=>formData.append(key,data[key as keyof customer]as string))
+      //formData.append("customerIdDocuments",imageUrl as unknown as  Blob)
+    
      //formData.append()
       console.log("@#", data);
       await axios.post("api/account", data, {
         headers: {
           "Content-Type": "application/json",
         },
-
       });
     } catch (error) {
       console.log(error)
@@ -93,13 +95,13 @@ export const AddCustomerForm = () => {
         autoComplete="on"
       >
         <h3 className="pt-2 pb-2">Personal Infomation</h3>
-        <Form.Item label="Firstname" name={`firstname`}>
-          <Input required name="firstname" type="text" />
+        <Form.Item label="Firstname" name="firstname">
+          <Input required  type="text" />
         </Form.Item>
-        <Form.Item label="Lastname">
-          <Input required name={'lastname'} type="text" />
+        <Form.Item label="Lastname" name="lastname">
+          <Input required  type="text" />
         </Form.Item>
-        <Form.Item label="Middlename" name={'middlename'}>
+        <Form.Item label="Middlename" name="middlename">
           <Input  type="text" />
         </Form.Item>
         <Form.Item label="Phone" name={'phone'}>
@@ -114,7 +116,7 @@ export const AddCustomerForm = () => {
         <Form.Item label="Date of Birth" name={'dateOfBirth'}>
           <DatePicker required  />
         </Form.Item>
-        <Form.Item label="ID Type" name="userIdType">
+        <Form.Item label="ID Type" name={'customerIdType'}>
           <Select defaultValue="">
             <Select.Option value="Voters ID">Voters ID</Select.Option>
             <Select.Option value="Ghana Crad">Ghana Crad</Select.Option>
@@ -122,6 +124,9 @@ export const AddCustomerForm = () => {
               Drivers Lincense
             </Select.Option>
           </Select>
+        </Form.Item>
+        <Form.Item label="customer ID Number" name={'customerIdNumber'}>
+          <Input required type="text"  />
         </Form.Item>
         <Form.Item
           label="Id"
@@ -149,8 +154,7 @@ export const AddCustomerForm = () => {
           <Input required  type="email" />
         </Form.Item>
         <h3 className="pt-2 pb-2">Identification Documents</h3>
-
-        <Form.Item label="ID Type" name="nextOfKinIdType">
+        <Form.Item label="ID Type" name="">
           <Select  defaultValue="">
             <Select.Option value="Voters ID">Voters ID</Select.Option>
             <Select.Option value="Ghana Crad">Ghana Crad</Select.Option>

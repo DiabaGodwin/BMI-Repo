@@ -1,49 +1,39 @@
+//import prisma from "@/lib/mongo/index";
+import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/mongo/index";
 
-export async function GET() {
-  const data = { message: "Hello, world!" };
-  return NextResponse.json(data);
+const prisma = new PrismaClient();
+export async function GET(res: NextResponse) {
+  const customerExist = await prisma.customer.findFirst({
+    where: {
+      email: "cobbikay@gmail.com",
+    },
+  });
+  return NextResponse.json(customerExist);
 }
 
 export async function POST(req: NextRequest) {
-  console.log(req)
   const body = await req.json();
-  const userExist = await prisma.user.findFirst({
+  const customerExist = await prisma.customer.findFirst({
     where: {
       email: body.email,
     },
   });
-  if (userExist) {
+
+  if (customerExist !== null) {
     return Response.json("Email already exists");
   }
-  const accountNumber = Math.floor(1000000000 + Math.random() * 9000000000).toString();
 
-  const newUser = await prisma.user.create({
+  const accountNumber = Math.floor(
+    1000000000 + Math.random() * 9000000000
+  ).toString();
+  console.log("Checking data", body)
+  const newcustomer = await prisma.customer.create({
     data: {
-      firstname: body.firstname,
-      lastname: body.lastname,
-      middlename: body.middlename,
-      phone: body.phone,
-      email: body.email,
-      address: body.address,
-      dateOfBirth: body.dateOfBirth,
-      accountBalance:body.accountBalance,
-      accountNumber :accountNumber,
-      userIdNumber: body.userIdNumber,
-      userIdType:body.userIdType,
-      identificationCard: body.identificationCard,
-      nextOfKinFirstName: body.nextOfKin.firstName,
-      nextOfKinLastName: body.nextOfKin.lastName,
-      nextOfKinPhone: body.nextOfKin.phone,
-      nextOfKinEmail: body.nextOfKin.email,
-      nextOfKinIdType: body.nextOfKinIdType,
-      nextOfKinIdNumber:body.nextOfKinIdNumber,
-      userIdDocuments: body.nextOfKin.userIdDocuments,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      ...body,
+      accountNumber: accountNumber,
+
     },
   });
-console.log(newUser)
-  return new Response(JSON.stringify({ ...newUser, _id: newUser.id }));
+  return new Response(JSON.stringify({ ...newcustomer, _id: newcustomer.id }));
 }
