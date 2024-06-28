@@ -1,27 +1,27 @@
 //import prisma from "@/lib/mongo/index";
+import { APIResponse } from "@/utilities/ApiResponse";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 export async function GET(res: NextResponse) {
-  const customerExist = await prisma.customer.findFirst({
-    where: {
-      email: "cobbikay@gmail.com",
-    },
-  });
+  const customerExist = await prisma.customer.findMany();
+
   return NextResponse.json(customerExist);
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
+  console.log("Testing",body);
   const customerExist = await prisma.customer.findFirst({
     where: {
       email: body.email,
     },
   });
 
-  if (customerExist !== null) {
-    return Response.json("Email already exists");
+  if (customerExist) {
+    console.log("Customer Exist", customerExist);
+    return APIResponse.validationError({"User": "User already exists" });
   }
 
   const accountNumber = Math.floor(

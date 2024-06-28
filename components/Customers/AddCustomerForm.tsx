@@ -154,7 +154,7 @@ export const AddCustomerForm = () => {
           <Input required  type="email" />
         </Form.Item>
         <h3 className="pt-2 pb-2">Identification Documents</h3>
-        <Form.Item label="ID Type" name="">
+        <Form.Item label="IID Type" name="nextOfKinIdType">
           <Select  defaultValue="">
             <Select.Option value="Voters ID">Voters ID</Select.Option>
             <Select.Option value="Ghana Crad">Ghana Crad</Select.Option>

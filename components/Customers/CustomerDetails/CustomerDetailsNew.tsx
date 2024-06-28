@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import type { InputRef, TableColumnsType, TableColumnType } from 'antd';
 import { Button, Input, Space, Table } from 'antd';
@@ -10,37 +10,56 @@ interface DataType {
   key: string;
   firstname: string;
   lastname: string;
-  amount: number;
+  phone: string;
+  dateOfBirth?: Date;
   accountNumber: string;
-  dateTime: string;
-  accountBalance:number;
-  teller:string;
+  customerIdType: string;
+  customerIdNumber: string;
+  accountBalance: string;
+  nextOfKinFirstName?: string;
+  nextOfKinLastName?: string;
+  nextOfKinIdType?: string;
+  nextOfKinIdNumber: string;
 }
 
-type DataIndex = keyof DataType;
-
-const data: DataType[] = [
-  {
-    key: '1',
-    firstname: 'John',
-    lastname:'Brown',
-    amount: 232,
-    accountNumber: '15456254454515',
-    dateTime: '2021-09-01',
-    accountBalance: 1000,
-    teller:'John Doe'
-  }
-];
-
 const CustomerDetailsNew = () => {
+  const [customers, setCustomers] = useState<DataType[]>([]);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('api/account');
+        const result = await response.json();
+        const transformedData = result.map((result: any, index: number) => ({
+          key: (index + 1).toString(),
+          firstname: result.firstname,
+          lastname: result.lastname,
+          phone: result.phone,
+          dateOfBirth: new Date(result.dateOfBirth),
+          accountNumber: result.accountNumber,
+          customerIdType: result.customerIdType,
+          customerIdNumber: result.customerIdNumber,
+          accountBalance: result.accountBalance,
+          nextOfKinFirstName: result.nextOfKinFirstName,
+          nextOfKinLastName: result.nextOfKinLastName,
+          nextOfKinIdType: result.nextOfKinIdType,
+          nextOfKinIdNumber: result.nextOfKinIdNumber,
+        }));
+        setCustomers(transformedData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleSearch = (
     selectedKeys: string[],
     confirm: FilterDropdownProps['confirm'],
-    dataIndex: DataIndex,
+    dataIndex: keyof DataType,
   ) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -52,9 +71,9 @@ const CustomerDetailsNew = () => {
     setSearchText('');
   };
 
-  const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<DataType> => ({
+  const getColumnSearchProps = (dataIndex: keyof DataType): TableColumnType<DataType> => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-      <div style={{ padding: 8, backgroundColor:'gray'}} onKeyDown={(e) => e.stopPropagation()}>
+      <div style={{ padding: 8, backgroundColor: 'gray' }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
@@ -98,7 +117,7 @@ const CustomerDetailsNew = () => {
               close();
             }}
           >
-            close
+            Close
           </Button>
         </Space>
       </div>
@@ -147,22 +166,34 @@ const CustomerDetailsNew = () => {
       sortDirections: ['descend', 'ascend'],
     },
     {
-      title: 'Amount',
-      dataIndex: 'amount',
-      key: 'amount',
-      ...getColumnSearchProps('amount'),
+      title: 'Phone',
+      dataIndex: 'phone',
+      key: 'phone',
+      ...getColumnSearchProps('phone'),
     },
     {
-      title: 'Account Number',
+      title: 'Acc Number',
       dataIndex: 'accountNumber',
       key: 'accountNumber',
       ...getColumnSearchProps('accountNumber'),
     },
     {
-      title: 'Withdrawal Date',
-      dataIndex: 'dateTime',
-      key: 'dateTime',
-      ...getColumnSearchProps('dateTime'),
+      title: 'DateOfBirth',
+      dataIndex: 'dateOfBirth',
+      key: 'dateOfBirth',
+      ...getColumnSearchProps('dateOfBirth'),
+    },
+    {
+      title: 'Cus IdType',
+      dataIndex: 'customerIdType',
+      key: 'customerIdType',
+      ...getColumnSearchProps('customerIdType'),
+    },
+    {
+      title: 'Cus IdNumber',
+      dataIndex: 'customerIdNumber',
+      key: 'customerIdNumber',
+      ...getColumnSearchProps('customerIdNumber'),
     },
     {
       title: 'Acc Balance',
@@ -171,14 +202,32 @@ const CustomerDetailsNew = () => {
       ...getColumnSearchProps('accountBalance'),
     },
     {
-      title: 'Telller',
-      dataIndex: 'teller',
-      key: 'teller',
-      ...getColumnSearchProps('teller'),
+      title: 'NextOfKinFirstName',
+      dataIndex: 'nextOfKinFirstName',
+      key: 'nextOfKinFirstName',
+      ...getColumnSearchProps('nextOfKinFirstName'),
+    },
+    {
+      title: 'NextOfKinLastName',
+      dataIndex: 'nextOfKinLastName',
+      key: 'nextOfKinLastName',
+      ...getColumnSearchProps('nextOfKinLastName'),
+    },
+    {
+      title: 'NextOfKinIdType',
+      dataIndex: 'nextOfKinIdType',
+      key: 'nextOfKinIdType',
+      ...getColumnSearchProps('nextOfKinIdType'),
+    },
+    {
+      title: 'NextOfKinIdNumber',
+      dataIndex: 'nextOfKinIdNumber',
+      key: 'nextOfKinIdNumber',
+      ...getColumnSearchProps('nextOfKinIdNumber'),
     },
   ];
 
-  return <Table columns={columns} dataSource={data} />;
+  return <Table columns={columns} dataSource={customers} />;
 };
 
 export default CustomerDetailsNew;
