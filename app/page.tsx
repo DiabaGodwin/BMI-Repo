@@ -3,6 +3,7 @@
 import { Button, Layout as AntLayout, Menu, theme } from "antd";
 import { useState } from "react";
 import Link from "next/link";
+import SignIn from "@/components/Login/SignIn";
 
 export default function Home() {
   const { Header, Sider, Content } = AntLayout;
@@ -12,12 +13,13 @@ export default function Home() {
   } = theme.useToken();
   return (
     <>
-      <div className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <h1 className="text-2xl font-sans font-bold text-blue-700">Welcome to signup page</h1>
+      {/* <div classNameName="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <h1 classNameName="text-2xl font-sans font-bold text-blue-700">Welcome to signup page</h1>
       <Link href="/dashboard" >
         Click to Proced to Dashboard
       </Link>
-      </div>
+      </div> */}
+      <SignIn/>
       
     </>
   );

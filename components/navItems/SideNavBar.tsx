@@ -23,7 +23,7 @@ const SideNavBar = () => {
             <Link href="/profile">Profile</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            <Link href="/customers">Acounts</Link>
+            <Link href="/customers">Customers</Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<DashboardOutlined />}>
             <Link href="/dashboard">Dashboard</Link>
@@ -37,7 +37,10 @@ const SideNavBar = () => {
           <Menu.Item key="6" icon={<MoneyCollectOutlined />}>
             <Link href="/deposites">Deposites</Link>
           </Menu.Item>
-          <Menu.Item key="7" icon={<LogoutOutlined />}>
+          <Menu.Item key="7" icon={<UserOutlined />}>
+            <Link href="/userManagement">User Mgt</Link>
+          </Menu.Item>
+          <Menu.Item key="8" icon={<LogoutOutlined />}>
             <Link href="">Logout</Link>
           </Menu.Item>
         </Menu>
